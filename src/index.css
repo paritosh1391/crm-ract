@@ -1,14 +1,615 @@
-body {
+*, *:after, *:before {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+.clearfix:before, .clearfix:after{
+content: "";
+display: table;
+}
+.clearfix:after{
+clear: both;
+}
+*.clearfix{
+zoom: 1;
+}
+img {
+  max-width: 100%;
+}
+a {
+  text-decoration: none;
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+}
+ul {
+  list-style-type: none;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+/* =============================== Header Starts Here =========================== */
+.header {
+  padding: 15px;
+  background: #0371a7;
+}
+.header-inner {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+.logo {
+  float: left;
+  width: 120px;
+}
+.oms {
+  float: right;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+  padding: 24px 0;
+}
+.oms h3 {
+  font-weight: 400;
+  font-size: 24px;
+  color: #fff;
+}
+.oms h3 span {
+  font-weight: 800;
+  color: #d8b804;
+}
+.login-wrap {
+  height: calc(100vh - 108px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f3f3f3;
+}
+.login-form {
+  width: 500px;
+}
+.form-header {
+  font-size: 18px;
+  padding: 15px 25px;
+  line-height: 1;
+  margin: 0 0 25px;
+  background: #d8b703;
+  color: #fff;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+.form-group-wrap {
+  padding: 25px;
+  background: #fff;
+  border-radius: 10px;
+  position: relative;
+}
+.type-text {
+  width: 100%;
+  -webkit-appearance: none;
+  border: 0;
+  border-bottom: 1px solid #b1afaf;
+  padding: 5px;
+  font-size: 16px;
+  outline: 0;
+  color: #b1afaf;
+}
+.type-text:focus {
+  border-bottom: 1px solid #d8b603;
+}
+.type-text.error {
+  border-bottom: 1px solid red;
+}
+
+.login-group {
+  margin: 0 0 25px;
+}
+.login-group:last-child {
+  margin: 0;
+}
+.login-btn {
+  text-transform: capitalize;
+  padding: 10px 25px;
+  border: 1px solid #d8b603;
+  border-radius: 5px;
+  background: #d8b603;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: 0.4s all ease;
+  -webkit-transition: 0.4s all ease;
+  outline: 0;
+}
+.login-btn:hover {
+  background: transparent;
+  color: #d8b603;
+}
+.forgot {
+  text-decoration: none;
+  text-transform: capitalize;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 0 30px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #101010;
+}
+.error-msg {
+  position: absolute;
+  bottom: 6px;
+  font-size: 12px;
+  color: red;
+  display: none;
+}
+
+/* =================================== MODAL ============================== */
+.modal {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  background: rgba(0,0,0,0.8);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.2);
+  transition: 0.4s all ease;
+  -webkit-transition: 0.4s all ease;
+}
+.modal-open {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+.modal-body {
+  position: absolute;
+  width: 50%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+}
+.modal-header {
+  background: #d8b603;
+  padding: 10px 15px;
+  color: #fff;
+}
+.modal-content {
+  background: #fff;
+  padding: 15px 10px 25px;
+}
+.form-group.add-ons-group {
+  width: 77%;
+  padding: 10px 15px 0;
+}
+.form-group.add-ons-group > label {
+  width: 25%;
+}
+.modal-submit {
+  padding: 12px 15px 0;
+}
+.modal-submit .login-btn {
+  margin-right: 15px;
+}
+.modal-close {
+  position: absolute;
+  right: 30px;
+  width: 40px;
+  top: 70px;
+  cursor: pointer;
+}
+
+/* ======================== ORDER REPORT STARTS HERE ====================== */
+.main-menu {
+  height: calc(100vh - 108px);
+  position: fixed;
+  left: 0;
+  top: 107px;
+  width: 250px;
+  background: #2C303B;
+  overflow-y: scroll;
+}
+.main-menu::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 10px;
+}
+
+/* Track */
+.main-menu::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+/* Handle */
+.main-menu::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.main-menu::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+.main-nav a {
+  color: #fff;
+  padding: 12px 0px 12px 18px;
+  display: block;
+  font-size: 16px;
+  position: relative;
+}
+.main-nav .menu-level-2 a {
+  font-size: 14px;
+}
+.menu-level-2 {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+.main-nav > ul > li > a:after {
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 15px;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  /* background: url("../images/right-arrow.png") no-repeat; */
+}
+.menu-level-2 {
+  display: none;
+}
+.menu-level-2 ul {
+  background: #23262F;
+}
+
+/*======================================================= MAIN CONTENT ================================================= */
+
+/* =================== BREADCRUMB ======================== */
+ul.breadcrumb {
+  padding: 7px 16px;
+  list-style: none;
+  background-color: #eee;
+}
+ul.breadcrumb li {
+  display: inline;
+  font-size: 12px;
+}
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+
+.main-content {
+  padding-left: 250px;
+  padding-top: 107px;
+}
+.content-wrapper {
+  padding: 15px 25px;
+}
+.form-row {
+  font-size: 0;
+}
+.form-group {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  width: 45%;
+  padding: 0 15px;
+  margin: 0 0 5px;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.form-group label {
+  width: 43%;
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: 700;
+}
+.form-control {
+  border: 1px solid #CACFE7;
+  color: #3B4781;
+  padding: 2px 15px;
+  outline: 0;
+  border-radius: 5px;
+  width: 55%;
+  vertical-align: middle;
+  font-size: 12px;
+}
+textarea.form-control {
+  height: 60px;
+  resize: none;
+}
+.file-control {
+  opacity: 0;
+  position: relative;
+}
+.file-ui {
+  position: absolute;
+  padding: 3px 0;
+}
+.radio-wrap {
+  display: inline-block;
+  width: 55%;
+}
+.radio-group {
+  display: inline-block;
+  vertical-align: middle;
+  width: 40%;
+  position: relative;
+}
+.radio-ui {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  left: 0;
+  top: 2px;
+  transition: 0.4s all ease;
+  -webkit-transition: 0.4s all ease;
+}
+.radio-ui:after {
+  position: absolute;
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0271a7;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transition: 0.4s all ease;
+  -webkit-transition: 0.4s all ease;
+  opacity: 0;
+}
+.radio-group input[type="radio"] {
+  opacity: 0;
+  position: relative;
+  z-index: 2;
+}
+.radio-group input[type="radio"]:checked + .radio-ui {
+  border: 1px solid #0271a7;
+}
+.radio-group input[type="radio"]:checked + .radio-ui:after {
+  opacity: 1;
+}
+.billing-header {
+  padding: 0px 15px;
+  margin: 25px 0;
+}
+.billing-header h3 {
+  padding: 6px 15px;
+  background: #d8b603;
+  margin: 0;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+/* ================================= ADD NEW LEAD STARTS HERE ============================== */
+.lead-header {
+  margin: 0 0 10px;
+}
+.customer-info, .contact-person {
+  width: 45%;
+}
+.customer-info .form-group, .contact-person .form-group {
+  width: 100%;
+}
+.block-head, .other-details-head {
+  padding: 10px 15px;
+}
+.block-head h4, .other-details-head h4 {
+  font-size: 15px;
+  padding: 7px 10px;
+  background: #0271a7;
+  color: #fff;
+  border-radius: 7px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+.add-product-wrap {
+  padding: 0 15px;
+  font-size: 16px;
+}
+.add-product-block {
+  background: #efeef0;
+  padding: 15px;
+}
+.no-record {
+  border: 1px solid #b7b7b7;
+  height: 70px;
+  position: relative;
+  padding: 9px 0;
+}
+.no-record strong {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 0 0 10px;
+  color: #ec1a1a;
+  text-align: center;
+}
+.add-btn-wrap {
+  padding: 15px 0 0;
+  text-align: center;
+}
+.add-btn {
+  padding: 7px 15px;
+  font-size: 14px;
+}
+
+/* ================================= CREATE LEAD OPPORTUNITY STARTS HERE ============================== */
+.customer-opportunity .form-group {
+  width: 33.33333%;
+}
+.submit-row {
+  padding: 0 15px;
+  margin: 15px 0;
+  position: relative;
+}
+.submit-wrap {
+  padding: 15px;
+  background: #eeeeef;
+  text-align: center;
+}
+.submit-wrap button {
+  margin: 0 10px;
+  padding: 6px 25px;
+}
+.disable {
+  background: #696862;
+  border: 1px solid #5f5d57;
+  pointer-events: none;
+}
+.error {
+  border: 1px solid red;
+}
+.mandatory-text {
+  display: none;
+  padding: 0 15px;
+  color: red;
+  position: absolute;
+  top: 21px;
+}
+.mandatory-text.open {
+  display: block;
+}
+
+/* =========================== Customer Lead List ======================= */
+.lead-list-wrap {
+  padding: 0 15px;
+  font-size: 12px;
+}
+.lead-list-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.lead-list-wrap table .login-btn {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+.table th, .table td {
+  padding: 5px 10px;
+  text-align: center;
+}
+.table td {
+  border: 1px solid #5f5d5d;
+}
+.table td span {
+  display: block;
+}
+.table th {
+  background: #0271a7;
+  color: #fff;
+  border: 1px solid #a0a0a0;
+}
+.list-wrapper {
+  padding: 15px 5px;
+}
+
+/* ================================ Order Entry ====================================== */
+.steps {
+  text-align: right;
+  margin: 0 0 15px;
+  background: #eff7ff;
+  padding: 10px 0;
+}
+.steps li {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 13px;
+  padding: 0 10px;
+  line-height: 1;
+}
+.steps li a {
+  color: #7f97ad;
+  font-weight: 700;
+}
+.steps li.active a {
+  color: #b99c03;
+}
+.button-wrap {
+  text-align: center;
+  padding: 15px 0 0;
+}
+.button-wrap .login-btn {
+  margin: 0 10px;
+  font-size: 12px;
+  padding: 8px 20px;
+}
+.small-block {
+  padding: 10px 0;
+}
+.full-length {
+  width: 100%;
+}
+
+/* ====================================== Payment Detail =============================== */   
+.payment-wrap {
+  padding: 45px 0;
+}
+.bank {
+  display: none;
+}
+
+/* ====================================== Document Detail =============================== */
+.document-wrap .file-ui {
+  border: 1px solid #CACFE7;
+  padding: 4px 15px;
+  width: 52.2%;
+  border-radius: 5px;
+}
+.document-wrap .form-group {
+  position: relative;
+}
+
+
+
+/* =================================== 31-OCTOBER-2018 ============================================= */
+.detail-head, .detail-body {
+  padding: 0 15px;
+}
+.detail-container {
+  display: flex;
+}
+.flex-child {
+  flex: 1;
+  font-size: 14px;
+      padding: 10px;
+}
+.detail-body .form-group {
+  width: 100%;
+  padding: 0;
+  display: flex;
+}
+.detail-head .flex-child {
+  background: #d8b502;
+  border-right: 1px solid #fff;
+  color: #fff;
+  text-transform: uppercase;
+}
+.form-group>* {
+  width: 50%;
 }
